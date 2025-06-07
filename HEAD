@@ -1,1 +1,5 @@
-ref: refs/heads/main
+0000000000000000000000000000000000000000 3ed6f16876911a574b969c65ae3be2428079c122 zephanhaydon <43560756-zephanhaydon@users.noreply.replit.com> 1749231285 +0000	commit (initial): Initial commit
+3ed6f16876911a574b969c65ae3be2428079c122 f6fa64a3b322a236ee90b946bc69328a10d27961 zephanhaydon <43560756-zephanhaydon@users.noreply.replit.com> 1749231285 +0000	commit: Started building your app
+f6fa64a3b322a236ee90b946bc69328a10d27961 c29e39c81fc3f3068ad049fbee0c4a11ac3816e6 zephanhaydon <43560756-zephanhaydon@users.noreply.replit.com> 1749231708 +0000	commit: Add user authentication and beam deflection prediction functionality
+c29e39c81fc3f3068ad049fbee0c4a11ac3816e6 6dc7aa6c4208aeb1d00d98305d4af7816545fd8e zephanhaydon <43560756-zephanhaydon@users.noreply.replit.com> 1749231828 +0000	commit: Switch to a faster machine learning model for beam deflection prediction
+6dc7aa6c4208aeb1d00d98305d4af7816545fd8e 0606eb2657f993f0812a8b16bc0228d6654ea54c zephanhaydon <43560756-zephanhaydon@users.noreply.replit.com> 1749231849 +0000	commit: Improve security by ensuring redirects after login stay within the site
