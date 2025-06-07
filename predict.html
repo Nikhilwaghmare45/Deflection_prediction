@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}Predict Deflection - Structural Engineering Predictor{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-calculator me-2"></i>Beam Parameters
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" id="prediction-form">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="mb-3">
+                            {{ form.beam_type.label(class="form-label") }}
+                            {{ form.beam_type(class="form-select form-select-lg") }}
+                            {% if form.beam_type.errors %}
+                                <div class="text-danger mt-1">
+                                    {% for error in form.beam_type.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.length_mm.label(class="form-label") }}
+                                <div class="input-group">
+                                    {{ form.length_mm(class="form-control form-control-lg") }}
+                                    <span class="input-group-text">mm</span>
+                                </div>
+                                {% if form.length_mm.errors %}
+                                    <div class="text-danger mt-1">
+                                        {% for error in form.length_mm.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                {{ form.width_mm.label(class="form-label") }}
+                                <div class="input-group">
+                                    {{ form.width_mm(class="form-control form-control-lg") }}
+                                    <span class="input-group-text">mm</span>
+                                </div>
+                                {% if form.width_mm.errors %}
+                                    <div class="text-danger mt-1">
+                                        {% for error in form.width_mm.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.depth_mm.label(class="form-label") }}
+                                <div class="input-group">
+                                    {{ form.depth_mm(class="form-control form-control-lg") }}
+                                    <span class="input-group-text">mm</span>
+                                </div>
+                                {% if form.depth_mm.errors %}
+                                    <div class="text-danger mt-1">
+                                        {% for error in form.depth_mm.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                {{ form.reinforcement_percent.label(class="form-label") }}
+                                <div class="input-group">
+                                    {{ form.reinforcement_percent(class="form-control form-control-lg") }}
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                {% if form.reinforcement_percent.errors %}
+                                    <div class="text-danger mt-1">
+                                        {% for error in form.reinforcement_percent.errors %}
+                                            <small>{{ error }}</small>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            {{ form.load_kn.label(class="form-label") }}
+                            <div class="input-group">
+                                {{ form.load_kn(class="form-control form-control-lg") }}
+                                <span class="input-group-text">kN</span>
+                            </div>
+                            {% if form.load_kn.errors %}
+                                <div class="text-danger mt-1">
+                                    {% for error in form.load_kn.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        {{ form.submit(class="btn btn-primary btn-lg w-100") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Panel -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>Prediction Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if prediction %}
+                        <div class="text-center">
+                            <div class="result-display p-4 bg-light rounded mb-4">
+                                <h2 class="display-4 text-success mb-2">
+                                    {{ prediction.deflection }} mm
+                                </h2>
+                                <p class="lead text-muted">Predicted Deflection</p>
+                            </div>
+                            
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <div class="p-3 border rounded">
+                                        <h6 class="text-muted">Beam Type</h6>
+                                        <h5>{{ prediction.beam_type }}</h5>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3 border rounded">
+                                        <h6 class="text-muted">Applied Load</h6>
+                                        <h5>{{ prediction.load }} kN</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    This prediction has been saved to your history.
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="text-center text-muted py-5">
+                            <i class="fas fa-chart-line display-1 mb-3"></i>
+                            <h5>No Prediction Yet</h5>
+                            <p>Fill in the beam parameters and click "Predict Deflection" to see results.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="card shadow-sm border-0 mt-4">
+                <div class="card-header">
+                    <h6 class="mb-0">
+                        <i class="fas fa-bolt me-2"></i>Quick Actions
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('history') }}" class="btn btn-outline-primary">
+                            <i class="fas fa-history me-2"></i>View All Predictions
+                        </a>
+                        <a href="{{ url_for('download_history') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-download me-2"></i>Download History
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Technical Information -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header">
+                    <h6 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Model Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6 class="text-primary">Algorithm</h6>
+                            <p class="small text-muted">Recurrent Neural Network (RNN) with LSTM layers for time-series prediction of structural deflection.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-primary">Training Data</h6>
+                            <p class="small text-muted">Model trained on comprehensive dataset of beam configurations and their measured deflections.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-primary">Accuracy</h6>
+                            <p class="small text-muted">Model validated with cross-validation and performance metrics to ensure reliable predictions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add form validation and user experience enhancements
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('prediction-form');
+    const inputs = form.querySelectorAll('input[type="number"]');
+    
+    // Add real-time validation feedback
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.checkValidity()) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else {
+                this.classList.remove('is-valid');
+                this.classList.add('is-invalid');
+            }
+        });
+    });
+    
+    // Add loading state to submit button
+    form.addEventListener('submit', function() {
+        const submitBtn = form.querySelector('input[type="submit"]');
+        submitBtn.value = 'Predicting...';
+        submitBtn.disabled = true;
+    });
+});
+</script>
+{% endblock %}

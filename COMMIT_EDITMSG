@@ -1,0 +1,7 @@
+Improve security by ensuring redirects after login stay within the site
+
+Fixes a vulnerability where users could be redirected to external sites after login using a malformed next page URL by using urlparse.
+
+Replit-Commit-Author: Agent
+Replit-Commit-Session-Id: cfef4760-0f92-42bd-b902-5ccde3844be5
+Replit-Commit-Screenshot-Url: https://storage.googleapis.com/screenshot-production-us-central1/d2cca482-fbd9-41c2-8031-a5c320b831e5/6dacedc5-bb22-4b7d-8b31-8727f26c59bd.jpg

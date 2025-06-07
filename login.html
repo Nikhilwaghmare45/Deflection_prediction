@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Structural Engineering Predictor{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg border-0 mt-5">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </h4>
+                </div>
+                <div class="card-body p-5">
+                    <form method="POST" class="needs-validation" novalidate>
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="mb-3">
+                            {{ form.username.label(class="form-label") }}
+                            {{ form.username(class="form-control form-control-lg", required=true, minlength="4", maxlength="20") }}
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.username.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="invalid-feedback">
+                                    Please enter a valid username (4-20 characters).
+                                </div>
+                                <div class="valid-feedback">
+                                    Username looks good!
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-4">
+                            {{ form.password.label(class="form-label") }}
+                            {{ form.password(class="form-control form-control-lg", required=true) }}
+                            {% if form.password.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.password.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="invalid-feedback">
+                                    Please enter your password.
+                                </div>
+                                <div class="valid-feedback">
+                                    Password entered!
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        {{ form.submit(class="btn btn-primary btn-lg w-100 mb-3", id="login-submit") }}
+                    </form>
+                    
+                    <div class="text-center">
+                        <p class="text-muted">Don't have an account?</p>
+                        <a href="{{ url_for('register') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-user-plus me-2"></i>Register Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

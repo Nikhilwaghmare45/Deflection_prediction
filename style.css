@@ -1,0 +1,208 @@
+/* Custom CSS for Structural Engineering Predictor */
+
+/* Root variables for consistent theming */
+:root {
+    --engineering-blue: #2c5aa0;
+    --engineering-green: #28a745;
+    --engineering-orange: #fd7e14;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+}
+
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Hero section styling */
+.hero-section {
+    padding: 3rem 0;
+}
+
+.hero-section .display-1 {
+    opacity: 0.8;
+}
+
+/* Card enhancements */
+.card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Form styling */
+.form-control-lg {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--engineering-blue);
+    box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+}
+
+/* Button enhancements */
+.btn {
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Result display */
+.result-display {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid var(--engineering-green);
+}
+
+/* Statistics cards */
+.stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Table styling */
+.table {
+    font-size: 0.9rem;
+}
+
+.table th {
+    font-weight: 600;
+    border-top: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(44, 90, 160, 0.05);
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.8em;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Animation for loading states */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.loading {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.8rem;
+    }
+}
+
+/* Form validation styles */
+.form-control.is-valid {
+    border-color: var(--engineering-green);
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+/* Empty state styling */
+.empty-state {
+    padding: 4rem 2rem;
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+}
+
+/* Utility classes */
+.text-engineering-blue {
+    color: var(--engineering-blue) !important;
+}
+
+.bg-engineering-blue {
+    background-color: var(--engineering-blue) !important;
+}
+
+/* Chart container */
+#activity-chart {
+    max-height: 200px;
+}
+
+/* Improved spacing */
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Enhanced navbar */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Professional color scheme for engineering application */
+.bg-primary {
+    background-color: var(--engineering-blue) !important;
+}
+
+.btn-primary {
+    background-color: var(--engineering-blue);
+    border-color: var(--engineering-blue);
+}
+
+.btn-primary:hover {
+    background-color: #1e3d6f;
+    border-color: #1e3d6f;
+}
+
+/* Loading spinner for charts */
+.chart-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+/* Improved accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Enhanced focus states for better accessibility */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: 2px solid var(--engineering-blue);
+    outline-offset: 2px;
+}
